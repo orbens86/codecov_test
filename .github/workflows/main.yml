@@ -36,7 +36,8 @@ jobs:
       run: dotnet tool install --global trx2junit
 
     - name: Convert TRX to JUnit
-      run: trx2junit ./TestResults/test-results.trx -o ./TestResults/TEST-results.xml
+      run: | 
+            trx2junit ./TestResults/test-results.trx -o ./TestResults/TEST-results.xml
 
     - name: Show generated test result
       run: ls -l ./TestResults
