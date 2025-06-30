@@ -24,31 +24,22 @@ jobs:
     - name: Build
       run: dotnet build --no-restore --configuration Release
 
-    - name: Run tests and generate TRX + coverage
+    - name: Test with coverage and junit
       run: >
         dotnet test --no-build --configuration Release
         --collect:"XPlat Code Coverage"
-        --logger "trx;LogFileName=test-results.trx"
+        --logger:"junit;LogFilePath=./TestResults/test-results.xml"
         --results-directory ./TestResults
 
-    - name: Install trx2junit
-      run: dotnet tool install --global trx2junit
-
-    - name: Convert TRX to JUnit
-      run: |
-        export PATH="$PATH:$HOME/.dotnet/tools"
-        trx2junit ./TestResults/test-results.trx
-
-    - name: Upload coverage to Codecov
+    - name: Upload code coverage
       uses: codecov/codecov-action@v4
       with:
         token: ${{ secrets.CODECOV_TOKEN }}
         files: ./TestResults/**/coverage.cobertura.xml
         flags: unittests
         name: codecov-coverage
-        verbose: true
 
-    - name: Upload test results to Codecov
+    - name: Upload test results
       uses: codecov/test-results-action@v1
       with:
         token: ${{ secrets.CODECOV_TOKEN }}
