@@ -41,6 +41,10 @@ jobs:
     - name: Show generated test result
       run: ls -l ./TestResults
 
+    - name: Debug - Show contents of TestResults
+      run: ls -R ./TestResults
+
+
     - name: Upload code coverage to Codecov
       uses: codecov/codecov-action@v4
       with:
