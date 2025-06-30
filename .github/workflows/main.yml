@@ -31,6 +31,14 @@ jobs:
         --logger:"junit;LogFilePath=TestResults/test-results.xml;MethodFormat=Class;FailureBodyFormat=Verbose"
         --results-directory ./TestResults
 
+    - name: Run tests and generate TRX
+      run: >
+          dotnet test --no-build --configuration Release
+          --collect:"XPlat Code Coverage"
+          --logger "trx;LogFileName=test-results.trx"
+          --results-directory ./TestResults
+
+
     - name: Upload coverage to Codecov
       uses: codecov/codecov-action@v4
       with:
