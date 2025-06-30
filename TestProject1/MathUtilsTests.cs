@@ -16,6 +16,13 @@ namespace ConsoleApp1.Tests
         {
             Assert.Equal(1, MathUtils.Subtract(3, 2));
         }
+
+        
+        [Fact]
+        public void multiply_ReturnsCorrectDifference()
+        {
+            Assert.Equal(6, MathUtils.Multiply(3, 2));
+        }
     }
 
     
