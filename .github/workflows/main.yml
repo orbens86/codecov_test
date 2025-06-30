@@ -30,6 +30,7 @@ jobs:
         --collect:"XPlat Code Coverage"
         --logger:"junit;LogFilePath=./TestResults/test-results.xml"
         --results-directory ./TestResults
+        -p:GenerateFullPaths=true
 
     - name: Upload code coverage
       uses: codecov/codecov-action@v4
