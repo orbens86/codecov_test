@@ -37,7 +37,7 @@ jobs:
 
     - name: Convert TRX to JUnit
       run: | 
-            trx2junit ./TestResults/test-results.trx -o ./TestResults/TEST-results.xml
+            trx2junit ./TestResults/test-results.trx
 
     - name: Show generated test result
       run: ls -l ./TestResults
@@ -55,4 +55,4 @@ jobs:
       uses: codecov/test-results-action@v1
       with:
         token: ${{ secrets.CODECOV_TOKEN }}
-        files: ./TestResults/TEST-results.xml
+        files: ./TestResults/test-results.xml
