@@ -41,8 +41,9 @@ jobs:
     - name: Show generated test result
       run: ls -l ./TestResults
 
-    - name: Debug - Show contents of TestResults
-      run: ls -R ./TestResults
+    - name: Convert TRX to JUnit
+      run: trx2junit ./TestResults/test-results.trx -o ./TestResults
+    
 
 
     - name: Upload code coverage to Codecov
