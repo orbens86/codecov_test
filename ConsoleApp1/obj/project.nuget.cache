@@ -1,8 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "CVlN7Kr1gkk=",
+  "dgSpecHash": "DoSCN2V4bts=",
   "success": true,
-  "projectFilePath": "C:\\Users\\Or Be Shmueli\\source\\repos\\ConsoleApp1\\ConsoleApp1\\ConsoleApp1.csproj",
-  "expectedPackageFiles": [],
+  "projectFilePath": "C:\\ tests\\codecov_test\\ConsoleApp1\\ConsoleApp1.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Or Be Shmueli\\.nuget\\packages\\coverlet.collector\\6.0.4\\coverlet.collector.6.0.4.nupkg.sha512"
+  ],
   "logs": []
 }
