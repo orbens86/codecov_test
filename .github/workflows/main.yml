@@ -30,7 +30,12 @@ jobs:
     - name: Upload coverage to Codecov
       uses: codecov/codecov-action@v4
       with:
+        token: ${{ secrets.CODECOV_TOKEN }}
+        slug: orbens86/codecov_test
         files: ./TestResults/**/coverage.cobertura.xml
         flags: unittests
         name: codecov-coverage
         verbose: true
+        uses: codecov/codecov-action@v5
+    
+      
