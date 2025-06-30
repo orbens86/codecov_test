@@ -11,21 +11,20 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v4
+    - uses: actions/checkout@v4
 
     - name: Setup .NET
       uses: actions/setup-dotnet@v4
       with:
         dotnet-version: '8.0.x'
 
-    - name: Restore dependencies
+    - name: Restore
       run: dotnet restore
 
-    - name: Build solution
+    - name: Build
       run: dotnet build --no-restore --configuration Release
 
-    - name: Run tests and generate TRX
+    - name: Run tests and generate coverage and trx
       run: >
         dotnet test --no-build --configuration Release
         --collect:"XPlat Code Coverage"
@@ -36,8 +35,11 @@ jobs:
     - name: Install trx2junit
       run: dotnet tool install --global trx2junit
 
-    - name: Convert TRX to JUnit format
+    - name: Convert TRX to JUnit
       run: trx2junit ./TestResults/test-results.trx
+
+    - name: Show generated test result
+      run: ls -l ./TestResults
 
     - name: Upload code coverage to Codecov
       uses: codecov/codecov-action@v4
@@ -52,5 +54,4 @@ jobs:
       uses: codecov/test-results-action@v1
       with:
         token: ${{ secrets.CODECOV_TOKEN }}
-        files: ./TestResults/test-results.xml
-
+        files: ./TestResults/TEST-*.xml
