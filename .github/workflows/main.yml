@@ -24,18 +24,23 @@ jobs:
     - name: Build
       run: dotnet build --no-restore --configuration Release
 
-    - name: Test with code coverage
-      run: dotnet test --no-build --configuration Release --collect:"XPlat Code Coverage" --results-directory ./TestResults
+    - name: Test with code coverage and junit
+      run: >
+        dotnet test --no-build --configuration Release
+        --collect:"XPlat Code Coverage"
+        --logger:"junit;LogFilePath=TestResults/test-results.xml"
+        --results-directory ./TestResults
 
     - name: Upload coverage to Codecov
       uses: codecov/codecov-action@v4
       with:
         token: ${{ secrets.CODECOV_TOKEN }}
-        slug: orbens86/codecov_test
         files: ./TestResults/**/coverage.cobertura.xml
         flags: unittests
         name: codecov-coverage
         verbose: true
-        uses: codecov/codecov-action@v5
-    
-      
+
+    - name: Upload test results to Codecov
+      uses: codecov/test-results-action@v1
+      with:
+        files: ./TestResults/test-results.xml
