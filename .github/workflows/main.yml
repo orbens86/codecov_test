@@ -28,7 +28,7 @@ jobs:
       run: >
         dotnet test --no-build --configuration Release
         --collect:"XPlat Code Coverage"
-        --logger:"junit;LogFilePath=TestResults/test-results.xml"
+        --logger:"junit;LogFilePath=TestResults/test-results.xml;MethodFormat=Class;FailureBodyFormat=Verbose"
         --results-directory ./TestResults
 
     - name: Upload coverage to Codecov
