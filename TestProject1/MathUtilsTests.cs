@@ -23,7 +23,12 @@ namespace ConsoleApp1.Tests
         {
             Assert.Equal(6, MathUtils.Multiply(3, 2));
         }
-
+    
+        [Fact]
+     public void Divide_ReturnsCorrectDifference()
+     {
+         Assert.Equal(2, MathUtils.Divide(6, 3));
+     }
     
     }
 
